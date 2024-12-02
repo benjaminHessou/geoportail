@@ -1,0 +1,45 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.geoportail"
+    
+    // Remplacer ces valeurs par des versions fixes
+    compileSdkVersion 34  // Exemple pour la version SDK de compilation (33 pour Android 13)
+    ndkVersion '25.2.9519659'  // Par exemple, version de NDK
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId = "com.example.geoportail"
+        
+        // Spécifier directement les versions du SDK
+        minSdkVersion 21    // Version minimale de l'API Android
+        targetSdkVersion 34 // Version cible de l'API Android
+        
+        versionCode 1       // Version interne de l'application
+        versionName "1.0.0" // Nom de version visible dans le play store
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debug
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
+

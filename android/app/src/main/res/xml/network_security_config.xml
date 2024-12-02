@@ -1,0 +1,5 @@
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">http://vps107504.serveur-vps.net/projetminef/api/v1/geoportail</domain>
+    </domain-config>
+</network-security-config>

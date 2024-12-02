@@ -1,0 +1,57 @@
+import 'package:flutter/material.dart';
+
+class CustomInputField extends StatefulWidget {
+  final String labelText;
+  final bool isPassword;
+
+  // Constructeur pour passer les informations
+  const CustomInputField({super.key, required this.labelText, this.isPassword = false});
+
+  @override
+  _CustomInputFieldState createState() => _CustomInputFieldState();
+}
+
+class _CustomInputFieldState extends State<CustomInputField> {
+  bool _obscureText = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // Utiliser Container pour contrôler la largeur du champ d'entrée
+      width: MediaQuery.of(context).size.width * 0.9, // 90% de la largeur de l'écran
+      child: TextFormField(
+        decoration: InputDecoration(
+          labelText: widget.labelText,
+          filled: true,
+          fillColor: Colors.grey[200],
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: BorderSide.none,
+          ),
+          contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+          prefixIcon: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Icon(
+              widget.labelText == 'Nom' ? Icons.person : Icons.person,
+              color: Colors.grey,
+            ),
+          ),
+          suffixIcon: widget.isPassword 
+            ? IconButton(
+                icon: Icon(
+                  _obscureText ? Icons.visibility : Icons.visibility_off,
+                  color: Colors.grey,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _obscureText = !_obscureText;
+                  });
+                },
+              )
+            : null,
+        ),
+        obscureText: widget.isPassword ? _obscureText : false,
+      ),
+    );
+  }
+}

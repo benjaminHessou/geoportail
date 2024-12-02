@@ -1,0 +1,94 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart'; // Importer GetX
+import 'package:geoportail/views/bienvenu/success_page.dart';
+import 'package:geoportail/common/widgets/custom_button.dart';
+import 'package:geoportail/common/widgets/custom_input_field.dart';
+
+class LoginPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea( // Pour éviter que le contenu ne soit masqué par l'encoche ou les bords de l'écran
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // Image en haut avec les coins inférieurs arrondis
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(30.0), 
+                bottomRight: Radius.circular(30.0),
+              ),
+              child: Image.asset(
+                'images/imageagent.jpg',
+                height: MediaQuery.of(context).size.height * 0.4,
+                width: double.infinity,
+                fit: BoxFit.cover, 
+              ),
+            ),
+            const SizedBox(height: 30),
+
+            // Texte de bienvenue
+            const Center(
+              child: Text(
+                'Bienvenue sur l’application d’alerte du MINIEF',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF007533),
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            const SizedBox(height: 10),
+
+            // Texte secondaire
+            const Center(
+              child: Text(
+                'Connectez-vous à votre espace',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color(0xFF33691B),
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            const SizedBox(height: 40),
+
+            // Champs de texte et bouton de connexion
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                children: [
+                  CustomInputField(labelText: 'Nom Agent'),
+                  const SizedBox(height: 20),
+                  CustomInputField(labelText: 'Mot de passe', isPassword: true),
+                  const SizedBox(height: 30),
+                  CustomButton(
+                    buttonText: 'Se connecter',
+                    onPressed: () {
+                      // Naviguer vers la page de succès avec GetX
+                      Get.to(() => SuccessPage());
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                  Container(
+                    width: 60,
+                    height: 30,
+                    alignment: Alignment.center, 
+                    child: const Text(
+                      'Géoportail',
+                      style: TextStyle(
+                        color: Color(0xFF75BC66), 
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
